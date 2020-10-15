@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Child from './Hook/Child'
+
+export const TemaSitus = React.createContext('light');
+
+
+// custome hook 
+const useToogle = function(){
+  const [value , toggle ] = React.useState("OFF");
+
+  return [value, toggle];
+}
+
 
 function App() {
+ 
+  let [statuslampu, togglelampu] = useToogle()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      Lampu saat ini : {statuslampu} <br />
+      <button onClick={e => togglelampu("ON")}>Saklar</button>
+      {/* <TemaSitus.Provider value={'light'}>
+        <Child />
+      </TemaSitus.Provider> */}
     </div>
   );
 }
